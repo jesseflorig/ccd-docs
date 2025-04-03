@@ -905,3 +905,113 @@ void print_name(const char *name) {
     printf("%s\n", name);
 }
 ```
+
+## 6.0 C Programming
+
+### 6.1 Describe the purpose and use of C programming fundamentals:
+
+- The main() Function
+   - **Purpose**: It’s the entry point of any C program.
+   - **Use**: Execution starts from main(). It can return an integer to indicate success (0) or failure (non-zero) to the operating system.
+ - The return Statement
+   - **Purpose**: Ends a function and optionally returns a value to the caller.
+   - **Use**: In main(), return 0; signals successful completion. In other functions, it sends data back to where the function was called.
+ - Macro Guards
+   - **Purpose**: Prevent multiple inclusion of the same header file.
+   - **Use**: Implemented using #ifndef, #define, and #endif.
+ - Data Types
+   - **Purpose**: Define the type and size of data.
+   - **Use**: Examples: int, char, float, double, struct, union.
+ - Functions and Procedures
+   - **Purpose**: Organize code into reusable blocks.
+   - **Use**: Functions return values, procedures (void functions) do not.
+ - Parameters
+   - **Purpose**: Allow data to be passed into functions.
+   - **Use**: Used in function definitions and calls to supply values or references.
+ - Scope
+   - **Purpose**: Determines visibility/lifetime of variables.
+   - **Use**: Local (inside functions/blocks), Global (outside functions), or Static (preserves value between calls).
+ - Return Values (Return Type and Reference)
+   - **Purpose**: Functions return data using a defined type.
+   - **Use**: Can return a direct value or a pointer/reference.
+ - Header Files
+   - **Purpose**: Declare functions, macros, and data types to be shared.
+   - **Use**: Use #include to import. Often used for interface definitions.
+ - Keywords (static and extern)
+   - `static`:
+      - Limits variable/function scope to the file.
+      - Keeps local variables persistent between function calls.
+   - `extern`:
+      - Declares a variable/function defined in another file.
+ - Pointers
+   - **Purpose**: Store memory addresses, enable dynamic memory, and function references.
+   - **Use**: Vital for arrays, strings, and efficient function calls.
+ - An Array
+   - **Purpose**: Stores multiple items of the same type.
+   - **Use**: Fixed-size, contiguous memory storage.
+ - C Preprocessor
+   - **Purpose**: Handles directives before actual compilation.
+   - **Use**: Macros (#define), file inclusion (#include), conditional compilation (#ifdef).
+ - Casting
+   - **Purpose**: Converts a variable from one type to another.
+   - **Use**: `float f = (float)5 / 2; // 2.5`
+ - Control Flow
+   - **Purpose**: Direct program execution paths.
+   - **Use**: if, else, switch, while, for, break, continue, goto.
+ - Endianness
+   - **Purpose**: Describes byte order in memory (big-endian vs little-endian).
+   - **Use**: Important in low-level programming, network protocols, and binary file parsing.
+ - Multi-byte vs. Unicode Character Sets
+   - **Purpose**: Deal with international text and encoding formats.
+   - **Use**:
+   - Multi-byte: Legacy systems (e.g., Shift-JIS).
+   - Unicode: Wide character support (UTF-8, UTF-16), wchar_t in C.
+ - Multi-threading
+   - **Purpose**: Execute multiple threads for parallelism and concurrency.
+   - **Use**: Achieved using libraries like POSIX Threads (pthreads).
+ - Hashing
+   - **Purpose**: Map data to a fixed-size value, often for fast lookup.
+   - **Use**: Implementing hash tables, checksums, and cryptography.
+
+### 6.2 Describe C programming concepts in regards to memory:
+
+#### Memory Map of a Linux Process
+
+A typical memory layout of a Linux process looks like this:
+```
++---------------------+
+|     Stack           | ← Grows downward
++---------------------+
+|     Heap            | ← Grows upward
++---------------------+
+| Uninitialized Data  | (.bss)
++---------------------+
+| Initialized Data    | (.data)
++---------------------+
+|     Text (code)     |
++---------------------+
+```
+
+ - **Text Segment**: Stores the compiled machine code (read-only).
+ - **.data Segment**: Stores global/static variables with initial values.
+ - **.bss Segment**: Stores global/static variables with no initial value.
+ - **Heap**: Memory for dynamically allocated variables (malloc, calloc, etc.).
+ - **Stack**: Memory for local (automatic) variables and function call frames.
+
+ #### Automatically Allocated Memory
+
+ - **What it is**: Memory automatically managed by the compiler.
+ - **Where**: Located in the stack.
+ - **Lifetime**: Exists only during the function’s execution.
+
+ #### Dynamically Allocated Memory
+
+ - **What it is**: Memory explicitly allocated by the programmer at runtime.
+ - **Where**: Located in the heap.
+ - **Lifetime**: Persists until explicitly freed using free().
+
+#### Statically Allocated Memory
+
+ - What it is: Memory for variables whose size and lifetime are fixed at compile-time.
+ - Where: In the .data (if initialized) or .bss (if uninitialized) segment.
+ - Lifetime: From program start to program termination.
