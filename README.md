@@ -1107,3 +1107,54 @@ printf("double: %.15f\n", d);
 long double ld = 3.141592653589793238462643383279L;
 printf("long double: %.21Lf\n", ld);
 ```
+
+###6.3 Demonstrate proper declaration, understanding, and use of fixed-width C data types defined in `stdint.h`:
+
+`int8_t` & `uint8_t`
+ - **Width**: 8 bits (1 byte)
+ - **Range**: -128 to 127 (signed), 0 to 255 (unsigned)
+```
+#include <stdio.h>
+#include <stdint.h>
+
+int8_t a = -100;
+uint8_t b = 200;
+printf("int8_t a = %d\n", a);
+printf("uint8_t b = %u\n", b);
+```
+
+`int16_t` & `uint16_t`
+ - **Width**: 16 bits (2 bytes)
+ - **Range**: -32,768 to 32,767 (signed), 0 to 65,535 (unsigned)
+```
+#include <stdio.h>
+#include <stdint.h>
+
+int16_t s = -30000;
+uint16_t us = 60000;
+printf("int16_t: %d, uint16_t: %u\n", s, us);
+```
+
+`int32_t` & `uint32_t`
+ - **Width**: 32 bits (4 bytes)
+ - **Range**: -2,147,483,648 to 2,147,483,647 (signed), 0 to 4,294,967,295 (unsigned)
+```
+#include <stdio.h>
+#include <stdint.h>
+
+int32_t i = -2000000000;
+uint32_t ui = 4000000000U;
+printf("int32_t: %d, uint32_t: %u\n", i, ui);
+```
+
+`int64_t` & `uint64_t`
+ - **Width**: 64 bits (8 bytes)
+ - **Range**: −9,223,372,036,854,775,808 to +9,223,372,036,854,775,807 (signed), 0 to 18,446,744,073,709,551,615 (unsigned)
+```
+#include <stdio.h>
+#include <stdint.h>
+
+int64_t big = -9000000000000000000LL;
+uint64_t ubig = 18000000000000000000ULL;
+printf("int64_t: %lld, uint64_t: %llu\n", big, ubig);
+```
