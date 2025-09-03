@@ -1029,7 +1029,7 @@ A typical memory layout of a Linux process looks like this:
 
 ### 6.3 Demonstrate the proper declaration, understanding, and use of C data types and underlying structures:
 
-####`char`
+`char`
  - **Purpose**: Represents a single character or small integer
  - **Typical size**: 1 byte (8 bits)
  - **Range**: -128 to 127 (signed) or 0 to 255 (unsigned)
@@ -1041,7 +1041,7 @@ unsigned char u = 200;  // avoid negative values
 printf("char: %c (%d)\n", letter, letter);
 ```
 
-####`short`
+`short`
  - **Purpose**: Small integer, typically used to save memory
  - **Typical size**: 2 bytes (16 bits)
  - **Range**: -32,768 to 32,767 (signed), 0 to 65,535 (unsigned)
@@ -1051,7 +1051,7 @@ unsigned short us = 65000;
 printf("short: %d, unsigned short: %u\n", s, us);
 ```
 
-####`int`
+`int`
  - **Purpose**: The *default* integer type
  - **Typical size**: 4 bytes (32 bits)
  - **Range**: -2,147,483,648 to 2,147,483,647
@@ -1061,7 +1061,7 @@ unsigned int ux = 4000000000U;  // requires unsigned
 printf("int: %d, unsigned int: %u\n", x, ux);
 ```
 
-####`long`
+`long`
  - **Purpose**: Larger integer for extended range
  - **Typical size**: 8 bytes (64 bits)
  - **Range**:  -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (signed), 0 to 18,446,744,073,709,551,615 (unsigned)
@@ -1071,7 +1071,7 @@ unsigned long ul = 3000000000UL;
 printf("long: %ld, unsigned long: %lu\n", l, ul);
 ```
 
-####`long long`
+`long long`
  - **Purpose**: Guaranteed 64-bit integer
  - **Typical size**: 8 bytes (64 bits)
  - **Range**:-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
@@ -1081,7 +1081,7 @@ unsigned long long ubig = 18000000000000000000ULL;
 printf("long long: %lld, unsigned long long: %llu\n", big, ubig);
 ```
 
-####`float`
+`float`
  - **Purpose**: Single-precision floating point
  - **Typical size**: 4 byts (32 bits)
  - **Precision**: ~7 decimal digits
@@ -1090,7 +1090,7 @@ float f = 3.14159f;   // suffix f
 printf("float: %.7f\n", f);
 ```
 
-####`double`
+`double`
  - **Purpose**: Double-precision floating point
  - **Typical size**: 8 bytes (64 bits)
  - **Precision**: ~15 decimal digits
@@ -1099,7 +1099,7 @@ double d = 3.141592653589793;
 printf("double: %.15f\n", d);
 ```
 
-####`long double`
+`long double`
  - **Purpose**: Extended-precision floating point
  - **Typical size**: 16 bytes (80-bit or 128-bit precision)
  - **Precision**: ~20 decimal digits
