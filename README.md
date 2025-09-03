@@ -1158,3 +1158,82 @@ int64_t big = -9000000000000000000LL;
 uint64_t ubig = 18000000000000000000ULL;
 printf("int64_t: %lld, uint64_t: %llu\n", big, ubig);
 ```
+
+###6.5 Demonstrate the ability to creat eand implement a function that uses different arrays:
+
+**array**
+```
+#include <stdio.h>
+
+// Function that takes an array and its size, returns sum of elements
+int sumArray(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];   // access each element by index
+    }
+    return sum;
+}
+
+int main(void) {
+    int numbers[5] = {10, 20, 30, 40, 50};  // declare and initialize array
+    int total = sumArray(numbers, 5);       // pass array to function
+
+    printf("The sum of the array is: %d\n", total);
+    return 0;
+}
+```
+
+**multi-dimensional array**
+```
+#include <stdio.h>
+
+// Function to add two 2D arrays (matrices) of size rows x cols
+void addMatrices(int rows, int cols,
+                 int A[rows][cols],
+                 int B[rows][cols],
+                 int Result[rows][cols])
+{
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            Result[i][j] = A[i][j] + B[i][j];
+        }
+    }
+}
+
+// Function to print a 2D array
+void printMatrix(int rows, int cols, int M[rows][cols]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%4d ", M[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main(void) {
+    int A[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    int B[2][3] = {
+        {6, 5, 4},
+        {3, 2, 1}
+    };
+
+    int Result[2][3];  // to store the sum
+
+    addMatrices(2, 3, A, B, Result);
+
+    printf("Matrix A:\n");
+    printMatrix(2, 3, A);
+
+    printf("\nMatrix B:\n");
+    printMatrix(2, 3, B);
+
+    printf("\nResult (A + B):\n");
+    printMatrix(2, 3, Result);
+
+    return 0;
+}
+```
