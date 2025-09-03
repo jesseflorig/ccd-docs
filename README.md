@@ -1012,6 +1012,98 @@ A typical memory layout of a Linux process looks like this:
 
 #### Statically Allocated Memory
 
- - What it is: Memory for variables whose size and lifetime are fixed at compile-time.
- - Where: In the .data (if initialized) or .bss (if uninitialized) segment.
- - Lifetime: From program start to program termination.
+ - **What it is**: Memory for variables whose size and lifetime are fixed at compile-time.
+ - **Where**: In the .data (if initialized) or .bss (if uninitialized) segment.
+ - **Lifetime**: From program start to program termination.
+
+#### Automatic vs Dynamic allocation in terms of stack and heap
+
+ - **Stack**
+   - Used for automatic/local variabled and function call information
+   - Managed automatically by the compiler and runtime
+   - Grows/shrinks as functions are called/return
+ - **Heap**
+   - Used for dynamic allocations
+   - Managed manually by the programmer
+   - Grows/shrinks based on explicit `malloc`/`free` calls
+
+### 6.3 Demonstrate the proper declaration, understanding, and use of C data types and underlying structures:
+
+####`char`
+ - **Purpose**: Represents a single character or small integer
+ - **Typical size**: 1 byte (8 bits)
+ - **Range**: -128 to 127 (signed) or 0 to 255 (unsigned)
+ - **Underlying structure**: Stored as an integer (ASCII/Unicode code point).
+```
+char letter = 'A';      // character literal
+char newline = '\n';    // escape sequence
+unsigned char u = 200;  // avoid negative values
+printf("char: %c (%d)\n", letter, letter);
+```
+
+####`short`
+ - **Purpose**: Small integer, typically used to save memory
+ - **Typical size**: 2 bytes (16 bits)
+ - **Range**: -32,768 to 32,767 (signed), 0 to 65,535 (unsigned)
+```
+short s = 32000;
+unsigned short us = 65000;
+printf("short: %d, unsigned short: %u\n", s, us);
+```
+
+####`int`
+ - **Purpose**: The *default* integer type
+ - **Typical size**: 4 bytes (32 bits)
+ - **Range**: -2,147,483,648 to 2,147,483,647
+```
+int x = 1000;
+unsigned int ux = 4000000000U;  // requires unsigned
+printf("int: %d, unsigned int: %u\n", x, ux);
+```
+
+####`long`
+ - **Purpose**: Larger integer for extended range
+ - **Typical size**: 8 bytes (64 bits)
+ - **Range**:  -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (signed), 0 to 18,446,744,073,709,551,615 (unsigned)
+```
+long l = 1000000000L;       // suffix L
+unsigned long ul = 3000000000UL;
+printf("long: %ld, unsigned long: %lu\n", l, ul);
+```
+
+####`long long`
+ - **Purpose**: Guaranteed 64-bit integer
+ - **Typical size**: 8 bytes (64 bits)
+ - **Range**:-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+```
+long long big = 9000000000000000000LL;
+unsigned long long ubig = 18000000000000000000ULL;
+printf("long long: %lld, unsigned long long: %llu\n", big, ubig);
+```
+
+####`float`
+ - **Purpose**: Single-precision floating point
+ - **Typical size**: 4 byts (32 bits)
+ - **Precision**: ~7 decimal digits
+```
+float f = 3.14159f;   // suffix f
+printf("float: %.7f\n", f);
+```
+
+####`double`
+ - **Purpose**: Double-precision floating point
+ - **Typical size**: 8 bytes (64 bits)
+ - **Precision**: ~15 decimal digits
+```
+double d = 3.141592653589793;
+printf("double: %.15f\n", d);
+```
+
+####`long double`
+ - **Purpose**: Extended-precision floating point
+ - **Typical size**: 16 bytes (80-bit or 128-bit precision)
+ - **Precision**: ~20 decimal digits
+```
+long double ld = 3.141592653589793238462643383279L;
+printf("long double: %.21Lf\n", ld);
+```
