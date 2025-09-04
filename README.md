@@ -1237,3 +1237,370 @@ int main(void) {
     return 0;
 }
 ```
+
+###6.6 Demonstrate the avility to perfrom basic arithmetic operations using C operators while ensuring PEMDAS
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
+
+#define MAX 100
+
+// Stack for integers
+typedef struct {
+    int data[MAX];
+    int top;
+} IntStack;
+
+// Stack for operators
+typedef struct {
+    char data[MAX];
+    int top;
+} CharStack;
+
+void pushInt(IntStack *s, int val) {
+    s->data[++s->top] = val;
+}
+int popInt(IntStack *s) {
+    return s->data[s->top--];
+}
+int peekInt(IntStack *s) {
+    return s->data[s->top];
+}
+
+void pushChar(CharStack *s, char val) {
+    s->data[++s->top] = val;
+}
+char popChar(CharStack *s) {
+    return s->data[s->top--];
+}
+char peekChar(CharStack *s) {
+    return s->data[s->top];
+}
+int isEmptyChar(CharStack *s) {
+    return s->top == -1;
+}
+
+// Precedence of operators
+int precedence(char op) {
+    switch (op) {
+        case '^': return 3;
+        case '*': case '/': return 2;
+        case '+': case '-': return 1;
+        default: return 0;
+    }
+}
+
+// Check if operator is right-associative
+int isRightAssociative(char op) {
+    return op == '^';
+}
+
+// Convert infix expression to postfix using Shunting Yard
+void infixToPostfix(const char *expr, char output[][MAX], int *outSize) {
+    CharStack ops = {.top = -1};
+    *outSize = 0;
+
+    for (int i = 0; expr[i]; i++) {
+        if (isspace(expr[i])) continue;
+
+        if (isdigit(expr[i])) {
+            char number[MAX];
+            int j = 0;
+            while (isdigit(expr[i])) {
+                number[j++] = expr[i++];
+            }
+            number[j] = '\0';
+            strcpy(output[(*outSize)++], number);
+            i--; // step back
+        } else if (expr[i] == '(') {
+            pushChar(&ops, expr[i]);
+        } else if (expr[i] == ')') {
+            while (!isEmptyChar(&ops) && peekChar(&ops) != '(') {
+                char op[2] = {popChar(&ops), '\0'};
+                strcpy(output[(*outSize)++], op);
+            }
+            popChar(&ops); // remove '('
+        } else { // operator
+            while (!isEmptyChar(&ops) &&
+                   precedence(peekChar(&ops)) > 0 &&
+                   (precedence(peekChar(&ops)) > precedence(expr[i]) ||
+                    (precedence(peekChar(&ops)) == precedence(expr[i]) &&
+                     !isRightAssociative(expr[i])))) {
+                char op[2] = {popChar(&ops), '\0'};
+                strcpy(output[(*outSize)++], op);
+            }
+            pushChar(&ops, expr[i]);
+        }
+    }
+    while (!isEmptyChar(&ops)) {
+        char op[2] = {popChar(&ops), '\0'};
+        strcpy(output[(*outSize)++], op);
+    }
+}
+
+// Evaluate postfix expression
+int evalPostfix(char tokens[][MAX], int size) {
+    IntStack values = {.top = -1};
+
+    for (int i = 0; i < size; i++) {
+        if (isdigit(tokens[i][0]) || (tokens[i][0] == '-' && isdigit(tokens[i][1]))) {
+            pushInt(&values, atoi(tokens[i]));
+        } else {
+            int b = popInt(&values);
+            int a = popInt(&values);
+            switch (tokens[i][0]) {
+                case '+': pushInt(&values, a + b); break;
+                case '-': pushInt(&values, a - b); break;
+                case '*': pushInt(&values, a * b); break;
+                case '/': pushInt(&values, a / b); break;
+                case '^': pushInt(&values, (int)pow(a, b)); break;
+            }
+        }
+    }
+    return popInt(&values);
+}
+
+int main(void) {
+    char expr[MAX];
+    printf("Enter an expression: ");
+    fgets(expr, MAX, stdin);
+
+    char postfix[MAX][MAX];
+    int size = 0;
+
+    infixToPostfix(expr, postfix, &size);
+    int result = evalPostfix(postfix, size);
+
+    printf("Result = %d\n", result);
+    return 0;
+}
+```
+
+###6.7 Demonstrate the ability to properly use the standard main() entry arguments:
+
+```
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+    // Print hello world by default
+    if (argc == 1) {
+        printf("Hello, World!\n");
+    } else {
+        // If arguments are provided, print them
+        printf("Hello, ");
+        for (int i = 1; i < argc; i++) {
+            printf("%s", argv[i]);
+            if (i < argc - 1) {
+                printf(" ");  // space between arguments
+            }
+        }
+        printf("!\n");
+    }
+
+    return 0;
+}
+```
+
+###6.8 Demonstrate the ability to perform file management operations in C:
+
+**Open an existing file**
+```
+
+```
+
+**Read data from a file**
+```
+
+```
+
+**Write data to a file**
+```
+
+```
+
+**Modify data in a file**
+```
+
+```
+
+**Close an open file**
+```
+
+```
+
+**Print file information to the console**
+```
+
+```
+
+**Create a new file**
+```
+
+```
+
+**Append data to an existing file**
+```
+
+```
+
+**Delete a file**
+```
+
+```
+
+**Determine the size of a file**
+```
+
+```
+
+**Determine the location within a file**
+```
+
+```
+
+**Insert data into an existing file**
+```
+
+```
+
+###6.9 Demonstrate the ability to create and implement functions that meet a requirement:
+**Proper declaration for created functions**
+```
+
+```
+
+**A function that doesnt return a value**
+```
+
+```
+
+**A function that passes an argument by value**
+```
+
+```
+
+**A function that takes a pointer argument**
+```
+
+```
+
+**A function that returns a value using a return statement**
+```
+
+```
+
+**A function that modifies an output paramater through a pointer**
+```
+
+```
+
+**A function that receives input from a user**
+```
+
+```
+
+**A function pointer**
+```
+
+```
+
+**A recursive function**
+```
+
+```
+
+###6.10 Demonstrate the ability to perform data validation
+**Validate input received matches input expected**
+```
+
+```
+
+##6.11 Demonstra skill in using pointers
+**Declare an integer pointer**
+```
+
+```
+
+**Dereference a variable to get its value**
+```
+
+```
+
+**Printing the address of the variable**
+```
+
+```
+
+**Assigning a value to a pointer**
+```
+
+```
+
+**Make use of a function pointer to call another function**
+```
+
+```
+
+**Make effective use of pointer arithmetic to traerse an array**
+```
+
+```
+
+###6.12 Demonstrate skill in creating and implementing condition statements, expressions, and constructs:
+**for loop**
+```
+
+```
+
+**while loop**
+```
+
+```
+
+**do while loop**
+```
+
+```
+
+**if statement**
+```
+
+```
+
+**if/else statement**
+```
+
+```
+
+**if/else if/else statement**
+```
+
+```
+
+**switch statement**
+```
+
+```
+
+**effectige use of goto labels to construct a single exit point within a function**
+```
+
+```
+
+###6.13 Demonstrate skill in creating and implementing a sort routine:
+```
+
+```
+
+###6.14 Given a specification for a stateful application or protocol, describe a diagrame of the possible states it can have
+
+###6.15 Describe terms associated with compiling, linking, debugging, and executables:
+ - **Portable Executable (PE)**:
+ - **Executable and Linkable Format**:
+ - **Difference between PE and ELF**:
+ - **Difference between a library and regualr executable program**:
+ - **Calling convention/Application Binary Interface (ABI)**:
