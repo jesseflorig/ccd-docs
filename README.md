@@ -1604,3 +1604,74 @@ int main(int argc, char *argv[]) {
  - **Difference between PE and ELF**:
  - **Difference between a library and regualr executable program**:
  - **Calling convention/Application Binary Interface (ABI)**:
+
+ ###6.16 Demonstrate skill in compiling, linking, and debugging
+**Execute a program in a debugger**
+```
+
+```
+
+**Create a program using the compilation and linking process**
+```
+
+```
+
+**Compile position-independent code using a cross-compiler**
+```
+
+```
+
+###6.17 Demonstrate the ability to build a binary from multiple C source files and headers by writing a Makefile using explicit rules
+
+###6.18 Describe how and when bitwise operators are used:
+**and (&)**
+```
+
+```
+
+**or (|)**
+```
+
+```
+
+**xor (^)**
+```
+
+```
+
+**bitwise complement (~)**
+```
+
+```
+
+**shift left (<<)**
+```
+
+```
+
+**shift right (>>)**
+```
+
+```
+
+**Add, removing, and testing for single-bit flags**
+```
+
+```
+
+**Extracting arbitrary bytes from multi-byte data types**
+```
+
+```
+
+###6.19 Demonstrate skill using the C preprocessor
+
+###6.20 Demonstrate skill in accessing environment variables
+
+###6.21 Demonstrate skill in controlling memory:
+**With attention given to implementation defined behavior, compare and contast standard memory allocation functions**
+```
+
+```
+
+**Describe programming techniques that reduce the occurent of memory leaks**
