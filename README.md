@@ -1404,67 +1404,336 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
+Example usage:
+```
+$ ./hello
+Hello, World!
+
+$ ./hello Jesse
+Hello, Jesse!
+
+$ ./hello Jesse Florig
+Hello, Jesse Florig!
+```
 
 ###6.8 Demonstrate the ability to perform file management operations in C:
 
 **Open an existing file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function that opens a file and returns a FILE pointer
+FILE* openFile(const char *filename, const char *mode) {
+    FILE *fp = fopen(filename, mode);
+    if (fp == NULL) {
+        perror("Error opening file");
+        exit(EXIT_FAILURE);  // exit if file cannot be opened
+    }
+    return fp;
+}
+
+int main(void) {
+    // Example: open a file for writing
+    FILE *f = openFile("example.txt", "w");
+    ...
+    return 0;
+}
 ```
 
 **Read data from a file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+#define MAX_LINE 256
+
+// Reads file line by line and prints contents
+void readFile(FILE *fp) {
+    char buffer[MAX_LINE];
+
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        // fgets stops at newline or EOF, stores into buffer
+        printf("%s", buffer);
+    }
+
+    if (ferror(fp)) {
+        perror("Error reading file");
+    }
+}
+
+int main(void) {
+    FILE *f = fopen("example.txt", "r");
+    ...
+    readFile(f);
+    ...
+}
 ```
 
 **Write data to a file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function to write a string to an open file
+void writeToFile(FILE *fp, const char *text) {
+    if (fp == NULL) {
+        fprintf(stderr, "Invalid file pointer.\n");
+        return;
+    }
+
+    if (fputs(text, fp) == EOF) {
+        perror("Error writing to file");
+    }
+}
+
+int main(void) {
+    ...
+    writeToFile(f, "Hello, World!\n");
+    writeToFile(f, "This is line 2.\n");
+    ...
+}
 ```
 
 **Modify data in a file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+void modifyFile(const char *filename, const char *oldWord, const char *newWord) {
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("Error opening file for reading");
+        exit(EXIT_FAILURE);
+    }
+
+    // Temporary file to write modified contents
+    FILE *temp = fopen("temp.txt", "w");
+    if (temp == NULL) {
+        perror("Error opening temp file");
+        fclose(fp);
+        exit(EXIT_FAILURE);
+    }
+
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        // Replace occurrences of oldWord with newWord
+        char *pos;
+        while ((pos = strstr(buffer, oldWord)) != NULL) {
+            *pos = '\0';  // terminate string before oldWord
+            fprintf(temp, "%s%s", buffer, newWord);
+            strcpy(buffer, pos + strlen(oldWord));
+        }
+        fprintf(temp, "%s", buffer);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    // Replace original file with modified file
+    remove(filename);
+    rename("temp.txt", filename);
+}
+
+int main(void) {
+    // Example: replace "World" with "C Programmer" in output.txt
+    modifyFile("output.txt", "World", "C Programmer");
+    printf("File modified successfully.\n");
+    return 0;
+}
 ```
 
 **Close an open file**
 ```
-
+fclose(file);
 ```
 
 **Print file information to the console**
 ```
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <time.h>
 
+// Function to print file information
+void printFileInfo(const char *filename) {
+    struct stat st;
+
+    if (stat(filename, &st) == -1) {
+        perror("stat error");
+        return;
+    }
+
+    printf("File: %s\n", filename);
+    printf("Size: %lld bytes\n", (long long)st.st_size);
+    printf("Permissions: %o\n", st.st_mode & 0777);
+    printf("Owner UID: %d\n", st.st_uid);
+    printf("Group GID: %d\n", st.st_gid);
+    printf("Last accessed: %s", ctime(&st.st_atime));
+    printf("Last modified: %s", ctime(&st.st_mtime));
+    printf("Last status change: %s", ctime(&st.st_ctime));
+}
+
+int main(void) {
+    const char *filename = "output.txt";
+    printFileInfo(filename);
+    return 0;
+}
 ```
 
 **Create a new file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function to create a new file
+FILE* createFile(const char *filename) {
+    FILE *fp = fopen(filename, "w");  // "w" = write mode, creates or overwrites
+    if (fp == NULL) {
+        perror("Error creating file");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("File '%s' created successfully.\n", filename);
+    return fp;
+}
+
+int main(void) {
+    FILE *f = createFile("newfile.txt");
+    ...
 ```
 
 **Append data to an existing file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function to append a line of text to a file
+void appendToFile(const char *filename, const char *text) {
+    FILE *fp = fopen(filename, "a");  // "a" = append mode
+    if (fp == NULL) {
+        perror("Error opening file for appending");
+        exit(EXIT_FAILURE);
+    }
+
+    if (fputs(text, fp) == EOF) {
+        perror("Error writing to file");
+    }
+
+    fclose(fp);
+}
+
+int main(void) {
+    appendToFile("log.txt", "First appended line.\n");
+    appendToFile("log.txt", "Another appended line.\n");
+    ...
+}
 ```
 
 **Delete a file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function to delete a file
+void deleteFile(const char *filename) {
+    if (remove(filename) == 0) {
+        printf("File '%s' deleted successfully.\n", filename);
+    } else {
+        perror("Error deleting file");
+    }
+}
+
+int main(void) {
+    deleteFile("log.txt");  // change to your file
+    return 0;
+}
 ```
 
 **Determine the size of a file**
 ```
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
 
+// Function to print the size of a file
+void printFileSize(const char *filename) {
+    struct stat st;
+
+    if (stat(filename, &st) == 0) {
+        printf("File '%s' size: %lld bytes\n", filename, (long long)st.st_size);
+    } else {
+        perror("Error getting file size");
+    }
+}
+
+int main(void) {
+    printFileSize("example.txt");
+    return 0;
+}
 ```
 
 **Determine the location within a file**
+Set file postion indicator with `fseek` and access it with `ftell`:
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function to get and print the current location in a file
+long getFilePosition(FILE *fp) {
+    long pos = ftell(fp);
+    if (pos == -1L) {
+        perror("ftell error");
+        return -1;
+    }
+    printf("Current file position: %ld\n", pos);
+    return pos;
+}
+
+int main(void) {
+    FILE *f = fopen("example.txt", "r");
+    if (f == NULL) {
+        perror("Error opening file");
+        return EXIT_FAILURE;
+    }
+
+    // Move to different locations
+    getFilePosition(f);                // should be at 0 (start)
+    fseek(f, 10, SEEK_SET);            // move to byte offset 10
+    getFilePosition(f);                // should be 10
+    fseek(f, 0, SEEK_END);             // move to end
+    getFilePosition(f);                // should be file size
+
+    fclose(f);
+    return 0;
+}
 ```
 
 **Insert data into an existing file**
 ```
+FILE *temp = fopen("temp.txt", "w");
+file = fopen("example.txt", "r");
 
+if (file == NULL || temp == NULL) {
+    perror("Error handling insert operation");
+    return 1;
+}
+
+int line = 0;
+while (fgets(buffer, sizeof(buffer), file)) {
+    if (line == 1) {
+        fprintf(temp, "INSERTED LINE\n");
+    }
+    fprintf(temp, "%s", buffer);
+    line++;
+}
+
+fclose(file);
+fclose(temp);
+
+remove("example.txt");
+rename("temp.txt", "example.txt");
 ```
 
 ###6.9 Demonstrate the ability to create and implement functions that meet a requirement:
