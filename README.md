@@ -1108,7 +1108,7 @@ long double ld = 3.141592653589793238462643383279L;
 printf("long double: %.21Lf\n", ld);
 ```
 
-###6.3 Demonstrate proper declaration, understanding, and use of fixed-width C data types defined in `stdint.h`:
+### 6.3 Demonstrate proper declaration, understanding, and use of fixed-width C data types defined in `stdint.h`:
 
 `int8_t` & `uint8_t`
  - **Width**: 8 bits (1 byte)
@@ -1159,7 +1159,7 @@ uint64_t ubig = 18000000000000000000ULL;
 printf("int64_t: %lld, uint64_t: %llu\n", big, ubig);
 ```
 
-###6.5 Demonstrate the ability to creat eand implement a function that uses different arrays:
+### 6.5 Demonstrate the ability to creat eand implement a function that uses different arrays:
 
 **array**
 ```
@@ -1238,7 +1238,7 @@ int main(void) {
 }
 ```
 
-###6.6 Demonstrate the avility to perfrom basic arithmetic operations using C operators while ensuring PEMDAS
+### 6.6 Demonstrate the avility to perfrom basic arithmetic operations using C operators while ensuring PEMDAS
 
 ```
 #include <stdio.h>
@@ -1380,7 +1380,7 @@ int main(void) {
 }
 ```
 
-###6.7 Demonstrate the ability to properly use the standard main() entry arguments:
+### 6.7 Demonstrate the ability to properly use the standard main() entry arguments:
 
 ```
 #include <stdio.h>
@@ -1416,7 +1416,7 @@ $ ./hello Jesse Florig
 Hello, Jesse Florig!
 ```
 
-###6.8 Demonstrate the ability to perform file management operations in C:
+### 6.8 Demonstrate the ability to perform file management operations in C:
 
 **Open an existing file**
 ```
@@ -1736,90 +1736,123 @@ remove("example.txt");
 rename("temp.txt", "example.txt");
 ```
 
-###6.9 Demonstrate the ability to create and implement functions that meet a requirement:
+### 6.9 Demonstrate the ability to create and implement functions that meet a requirement:
 **Proper declaration for created functions**
 ```
-
+int add(int a, int b);
 ```
 
 **A function that doesnt return a value**
 ```
-
+void myFunction(int x);
 ```
 
 **A function that passes an argument by value**
 ```
-
+int a = 5;
+myFunction(a);
 ```
 
 **A function that takes a pointer argument**
 ```
-
+int x = 42;
+myFunction(&x);
 ```
 
 **A function that returns a value using a return statement**
 ```
-
+int myFunction(void){
+    return 42;
+}
 ```
 
 **A function that modifies an output paramater through a pointer**
 ```
-
+void doubleValye(int input, int *output) {
+    *output = input * 2;
+}
 ```
 
 **A function that receives input from a user**
 ```
+void getInput(void){
+    char name[100];
 
+    printf("Enter your name: ");
+    scanf("%99s", name);
+
+    print("Hello, %s\n", name);
+}
 ```
 
 **A function pointer**
 ```
+void myFunction(void);
 
+void (*fn)(void) = myFunction;
 ```
 
 **A recursive function**
 ```
-
+int fibonacci(int n){
+    if (n <=1) {
+        return n;
+    }
+    return fibonacci(n-1) + fibonacci(n-2);
+}
 ```
 
-###6.10 Demonstrate the ability to perform data validation
+### 6.10 Demonstrate the ability to perform data validation
 **Validate input received matches input expected**
 ```
-
+if (strcmp(input, "hello") == 0) {
+    // Matched
+} else {
+    // Didnt match
+}
 ```
 
 ##6.11 Demonstra skill in using pointers
 **Declare an integer pointer**
 ```
-
+int *ptr
 ```
 
 **Dereference a variable to get its value**
 ```
-
+int value = *ptr
 ```
 
 **Printing the address of the variable**
 ```
-
+printf(%p\n", (void *)&myVar);
 ```
 
 **Assigning a value to a pointer**
 ```
-
+int val = 42;
+int *ptr = &val;
 ```
 
 **Make use of a function pointer to call another function**
 ```
-
+void (*fn)(void) = someFunction)
+fn();
 ```
 
-**Make effective use of pointer arithmetic to traerse an array**
+**Make effective use of pointer arithmetic to traverse an array**
+```
+int numbers[] = {1, 2, 3 ,4 ,5};
+int *ptr = numbers;
+int *end = numbers + 5;
+
+while (ptr < end) {
+   printf(%d\n", *ptr);
+   ptr++;
+}
 ```
 
-```
-
-###6.12 Demonstrate skill in creating and implementing condition statements, expressions, and constructs:
+### 6.12 Demonstrate skill in creating and implementing condition statements, expressions, and constructs:
 **for loop**
 ```
 
@@ -1860,21 +1893,21 @@ rename("temp.txt", "example.txt");
 
 ```
 
-###6.13 Demonstrate skill in creating and implementing a sort routine:
+### 6.13 Demonstrate skill in creating and implementing a sort routine:
 ```
 
 ```
 
-###6.14 Given a specification for a stateful application or protocol, describe a diagrame of the possible states it can have
+### 6.14 Given a specification for a stateful application or protocol, describe a diagrame of the possible states it can have
 
-###6.15 Describe terms associated with compiling, linking, debugging, and executables:
+### 6.15 Describe terms associated with compiling, linking, debugging, and executables:
  - **Portable Executable (PE)**:
  - **Executable and Linkable Format**:
  - **Difference between PE and ELF**:
  - **Difference between a library and regualr executable program**:
  - **Calling convention/Application Binary Interface (ABI)**:
 
- ###6.16 Demonstrate skill in compiling, linking, and debugging
+ ### 6.16 Demonstrate skill in compiling, linking, and debugging
 **Execute a program in a debugger**
 ```
 
@@ -1890,9 +1923,9 @@ rename("temp.txt", "example.txt");
 
 ```
 
-###6.17 Demonstrate the ability to build a binary from multiple C source files and headers by writing a Makefile using explicit rules
+### 6.17 Demonstrate the ability to build a binary from multiple C source files and headers by writing a Makefile using explicit rules
 
-###6.18 Describe how and when bitwise operators are used:
+### 6.18 Describe how and when bitwise operators are used:
 **and (&)**
 ```
 
@@ -1933,11 +1966,11 @@ rename("temp.txt", "example.txt");
 
 ```
 
-###6.19 Demonstrate skill using the C preprocessor
+### 6.19 Demonstrate skill using the C preprocessor
 
-###6.20 Demonstrate skill in accessing environment variables
+### 6.20 Demonstrate skill in accessing environment variables
 
-###6.21 Demonstrate skill in controlling memory:
+### 6.21 Demonstrate skill in controlling memory:
 **With attention given to implementation defined behavior, compare and contast standard memory allocation functions**
 ```
 
