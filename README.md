@@ -1888,7 +1888,7 @@ while (ptr < end) {
 
 ```
 
-**effectige use of goto labels to construct a single exit point within a function**
+**effective use of goto labels to construct a single exit point within a function**
 ```
 
 ```
@@ -1967,8 +1967,14 @@ while (ptr < end) {
 ```
 
 ### 6.19 Demonstrate skill using the C preprocessor
+```
+
+```
 
 ### 6.20 Demonstrate skill in accessing environment variables
+```
+
+```
 
 ### 6.21 Demonstrate skill in controlling memory:
 **With attention given to implementation defined behavior, compare and contast standard memory allocation functions**
