@@ -1983,3 +1983,509 @@ while (ptr < end) {
 ```
 
 **Describe programming techniques that reduce the occurent of memory leaks**
+
+## 7.0 Python Programming
+
+### 7.1 Describe prpose and use of foundational Python mechanics:
+
+**return statement**
+
+**data types**
+
+**function**
+
+**parameters**
+
+**scope**
+
+**return values (type and reference)**
+
+**import files**
+
+**dictionaries**
+
+**list**
+
+**tuple**
+
+**singleton**
+
+**mutable (term)**
+
+**immutable (term)**
+
+### 7.2 Demonstrate the proper declaration and use of Python data types and object oriented constructs:
+
+**int**
+```
+
+```
+
+**float**
+```
+
+```
+
+**str**
+```
+
+```
+
+**list**
+```
+
+```
+
+**multi-dimensional list**
+```
+
+```
+
+**dict**
+```
+
+```
+
+**tuple**
+```
+
+```
+
+**singleton**
+```
+
+```
+
+### 7.3 Demonstrate the ability to perform basic arithmetic operations using Python operators while ensuring proper order of operations:
+
+**addition**
+
+**subtraction**
+
+**multiplication**
+
+**division**
+
+**modulus**
+
+### 7.4 Demonstrate the ability to perform file management operations in Python:
+
+**open an existing file**
+
+**read data from a file**
+
+**parse data from a file**
+
+**write adata to a file**
+
+**close an open file**
+
+**close an open file**
+
+**print file infromation to the console**
+
+**create a new file**
+
+**append data to an existing file**
+
+**delete a file**
+
+**determine the size of a file**
+
+**determing the location within a file**
+
+**insert data into an exsiting file**
+
+### 7.5 Demonstrate the avilit to create and implement functions to meet a requirement:
+
+**function that returns multiple values**
+
+**function that receives input from a user**
+
+**recursive function**
+
+### 7.6 Demonstrate the ability to perform data validation:
+
+**validating received input matches expected input**
+
+**designing and implementing a scheme for exception handling**
+
+### 7.7 Demonstrate skill in creating and implementing conditional statements, expressions, and constructs:
+
+**for loop**
+
+**while loop**
+
+**with statements**
+
+**if statement**
+
+**if/else statement**
+
+**if/elif/else statement**
+
+**try/except/finally**
+
+### 7.8 Describe the terms and fundamentals associated with object oriented programmging using Python:
+
+**class**
+
+**object**
+
+**disfference between an object and discussing a class**
+
+**advantages to object-oriented programming**
+
+**inheritance**
+
+**keyword "super"**
+
+**initialization function of a constructor**
+
+**the keyword "self"**
+
+**getter and setter functions**
+
+**attributes of a class**
+
+**factory design pattern**
+
+**singleton design pattern**
+
+**adapter design pattern**
+
+**bridge design pattern**
+
+### 7.9 Demonstrate the ability to parse command line arguments using built-in functionality
+
+## 8.0 Data Structures
+
+### 8.1 Describe the concepts and terms associated with key data structures:
+
+**hash table**
+
+**stack**
+
+**tree vs bubary search tree**
+
+**linked list**
+
+**double linked list**
+
+**queue vs priority queue**
+
+**circularly linked list**
+
+**weighted graph**
+
+**common pitfalls when using linked lists, trees, and graphs**
+
+**the effect of FIFO and LIFO**
+
+### 8.2 Demonstrate skill in creating and using a circularly linked list that accepts any data type:
+
+**creating circularly linked list with n number of items**
+
+**navigating through a circularly linked list**
+
+**sorting the circularly linked list alphanumerically using a function pointer**
+
+**removing selected items from the circularly linked list**
+
+**inserting an item into a specific lication in a circularly linked list**
+
+**destroying a circularly linked list**
+
+### 8.3 Demonstrate skill in creating and using a binary search tree that accepts any data type:
+
+**creating a binary search tree with n items**
+
+**navigating through a binary search tree**
+
+**locating an item in a binary search tree**
+
+**removing selected items from the binary search tree**
+
+**describe implementation strategies for a balanced binary search tree**
+
+**destroying a binary search tree**
+
+### 8.4 Demonstrate skill in creating and using a hash table that accepts any data type:
+
+**creating a hash table with n items**
+
+**navifating through a hash table to find the nth item**
+
+**finding an item in a hash table**
+
+**removing selected items from a hash table**
+
+**inserting an item in hash table**
+
+**implement functionality to mitigate hash collisions within the hash table**
+
+**removing all items from the hash table**
+
+### 8.5 Demonstrate skill in creating and using a stack that accepts any data type:
+
+**create a stack (not fixed)**
+
+**adding an item in a stack (enforce LIFO)**
+
+**removing n items from a stack**
+
+**removing all items from a stack**
+
+**destroying a stack**
+
+**preventing a stack overrun**
+
+### 8.6 Demonstrate skill in implementing a priority queue that accepts any data type:
+
+**defining the underlying structures required for priority queues**
+
+**assigning a priority to each element**
+
+**inserting an element into the priority queue**
+
+**reminng the element with the highest priority from the priority queue**
+
+**destroying a priority queue**
+
+**define a possible applications of a priority queue**
+
+## 9.0 Algorithms
+
+### 9.1 Describe concepts associated with traversal techinques:
+
+**depth first traversal**
+
+**breadth first traversal**
+
+**the techinque of determining the weight of a given path when traversing a graph**
+
+**how the most efficient path for traversing a graph is determined**
+
+### 9.2 Describe concepts associated with hashing:
+
+**data distribution as it relates to hashing**
+
+**hash function efficiency**
+
+**hash collisions**
+
+### 9.3 Demonstrate the ability to analyze sorting routines to determine the most efficient one to use, using an approximation of Big-O notation
+
+**insertion sort**
+
+**selection sort**
+
+**merge sort**
+
+**heap sort**
+
+**quick sort**
+
+**hashing**
+
+## 10.0
+
+### 10.1 Describe terms and concepts associated with OS virtualization:
+
+**processes**
+
+**cpu scheduling**
+
+**paging tables**
+
+**caching**
+
+**kernel and user-mode memory**
+
+### 10.2 Describe the following terms and concepts:
+
+**file systems**
+
+**the boot process**
+
+### 10.3 Demonstrate the avility to use the following constructs:
+
+**interrupts**
+
+**signal handling**
+
+### 10.4 Describe terms and conepts associated with concurrency:
+
+**threading (thread vs pthread)**
+
+**fork**
+
+**join**
+
+**create**
+
+**exit**
+
+**detach**
+
+**self**
+
+**locking (mutex, sephamore, etc)**
+
+**race conditions**
+
+**deadlocks**
+
+**thread safe**
+
+**thread id**
+
+**conditional variables**
+
+**atomics**
+
+**scheduling algorithms (round robin, shortest job first, priority scheduling)
+
+### 10.5 Demonstrate the ability to use the following constructs associated with concurrency:
+
+**threads**
+
+**locks**
+
+**condition variables**
+
+**atomics**
+
+**thread pool (graveful shutdown w/o memory leaks)**
+
+## 11.0
+
+### 11.1 Describe terms and concepts associated with secure coding practices:
+
+**common string-handling functions**
+
+**which functions guarantee null terminated strings**
+
+**off-by-one error**
+
+**integer overflow**
+
+**buffer overflow**
+
+**use-after-free**
+
+**resource acquisition is initialization**
+
+**the difference between input validation versus input sanitation**
+
+**meaning of a pure function and if a function has a side effect**
+
+**general low-level crypto basics (encryption schemes, system-wide implementation, crypto for specific use cases)**
+
+**penetration testing principles, tools, and techniques**
+
+**obfuscation techniques**
+
+### 11.2 Demonstrate skill in using secure coding techniques:
+
+**formatting string vulnerabilities**
+
+**safe buffer size allocation**
+
+**input sanitation**
+
+**input validation**
+
+**establish a secure communications channel using an SSL library**
+
+**securely zeroing-out memory (compiler optimizations)**
+
+## 12.0
+
+### 12.1 Describe the concepts and terms associated with networking fundaments:
+
+**TCP / UDP**
+
+**OSI model**
+
+**POSIX API/BSD sockets**
+
+**purpose and use of sockets**
+
+**RFCs**
+
+**purpose of subnetting**
+
+### 12.2 Describe the conepts and terms associated with common protocols and their associated ports, if applicable:
+
+**ARP**
+
+**HTTP/HTTPS**
+
+**DNS**
+
+**SMTP**
+
+**ICMP**
+
+**DHCP**
+
+**IPv4**
+
+**IPv6**
+
+### 12.3 Describe the addressing associated with key networking protocols:
+
+**IPv4**
+
+**IPv6**
+
+**ethernet**
+
+### 12.4 Describe the concepts and terms associated with physical and logical network infrastructure:
+
+**hubs**
+
+**switches**
+
+**routers**
+
+**firewalls*
+
+### 12.5 Describe different types of network communications:
+
+**LAN**
+
+**WAN**
+
+**MAN**
+
+**WLAN**
+
+**WWAN**
+
+### 12.6 In python, demonstrate skill in using networking commands accounting for endianness:
+
+**socket()**
+
+**send()**
+
+**recv()**
+
+**sendto()**
+
+**recvfrom()**
+
+**bind()**
+
+**listen()**
+
+**connect()**
+
+**accept()**
+
+**close()**
+
+**gethostname()**
+
+### 12
