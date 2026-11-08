@@ -2488,4 +2488,165 @@ while (ptr < end) {
 
 **gethostname()**
 
-### 12
+### 12.7 In C, demonstrate skill in using networking commands accounting for endianness:
+
+**socket()**
+
+**send()**
+
+**recv()**
+
+**sendto()**
+
+**recvfrom()**
+
+**bind()**
+
+**connect()**
+
+**accept()**
+
+**getsockopt()**
+
+**setsockopt()**
+
+**getaddrinfo()**
+
+**gethostname()**
+
+**struct sockaddr**
+
+**struct sockaddr_in**
+
+**struct sockaddr_un**
+
+**struct sockaddr_storage**
+
+### 12.8 Demonstrate skill in handling partial send()/recv()
+
+### 12.9 Demonstrate skill in implementing functions that can properly handle any IP address (IPv4/IPv6)
+
+### 12.10 Demonstrate skill in IO Multiplexing
+
+**select**
+
+**poll**
+
+## 13.0
+
+### 13.1 Describe data serialization and de-serialization
+
+### 13.2 Demonstrate the ability to handle partial reads and writes during serialization and de-serialization
+
+### 13.3 Demonstrate the ability to serialize fixed size multi-byte types between systems of differing endianness
+
+### 13.4 Demonstrate the ability to serialize and de-serialize variable sized data structures between systems of differing endianness
+
+### 13.5 Describe libraries commonly used to aid in serialization
+
+## 14.0
+
+### 14.1 Describe the following concepts related to regular expressions:
+
+**Basic Regular Expressions (BRE)**
+
+**Extended Regular Expressions (ERE)**
+
+**Perl Compatible Regular Expressions**
+
+### 14.2 In C, demonstrate the ability to incorporate regular expression processing into a program
+
+**Matching**
+
+**Use of capture groups**
+
+### 14.3 In Python, demonstrate the ability to incorporate regular expression processing into a program:
+
+**Matching**
+
+**Use of capture groups**
+
+## 15.0
+
+### 15.1 Describe the purpose of the following registers:
+
+**General Purpose Registers**
+
+**EIP**
+
+**EFLAGS**
+
+### 15.2 Describe the difference in registers between x86 and x64
+
+### 15.3 Describe the ways in which data can move between registers and memory:
+
+**Immediate to register**
+
+**Register to register**
+
+**Immediate to memory**
+
+**Register to memory and vice versa**
+
+**Memory to memory**
+
+### 15.4 Describe the purpose of the stack and how data is added/removed from it
+
+### 15.5 Describe the following calling conventions:
+
+**cdecl**
+
+**stdcall**
+
+**fastcall**
+
+### 15.6 Describe purpose and use of foundational RE mechanics:
+
+**Disassembler**
+
+**Decompiler**
+
+**Debugger**
+
+### 15.7 Describe the difference between static and dynamic analysis
+
+### 15.8 Describe how to identify data structures in static analysis
+
+### 15.9 Demonstrate the ability to reverse engineer a binary and identify key facts about it
+
+## 16.0
+
+### 16. 1 Describe your organization’s testing philosophy (e.g. CI/CD, TDD, etc.).
+
+### 16.2 Describe the difference between unit testing and functional/integration testing.
+
+### 16.3 Describe the difference between modular and monolithic design and its impact on testing.
+
+### 16.4 Demonstrate the ability to implement a unit test using Python.
+
+### 16.5 Describe the concept of Continuous Integration (CI) and how it relates to testing and overall product quality.
+
+## 17.0
+
+### 17.1 Describe your organization’s OPSEC policy.
+
+### 17.2 Describe how to safely use a search engine while maintaining OPSEC.
+
+### 17.3 Demonstrate how to use a search engine without leaking intelligence information.
+
+## 18.0
+
+### 18.1 Describe how an embedded system differs from a desktop computer and server.
+
+### 18.2 Describe how the limitations of an embedded system impact development.
+
+### 18.3 Demonstrate knowledge of alternative C libraries to glibc.
+
+### 18.4 Demonstrate the ability to cross-compile an application for multiple architectures.
+
+## 19.0 Cyber Capability
+
+### 19.1 Develop a capability:
+- Provide user interface (GUI or CLI)**
+- Apply software engineering best practices (CI/CD, virtualization, containerization)**
+- Provide documentation for capability**
