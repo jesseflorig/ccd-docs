@@ -1855,134 +1855,399 @@ while (ptr < end) {
 ### 6.12 Demonstrate skill in creating and implementing condition statements, expressions, and constructs:
 **for loop**
 ```
-
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+}
 ```
 
 **while loop**
 ```
+int i = 0;
 
+while (i < 10) {
+    printf("%d\n", i);
+    i++;
+}
 ```
 
 **do while loop**
 ```
+int i = 0;
 
+do {
+    printf("%d\n", i);
+    i++;
+} while (i < 10);
 ```
 
 **if statement**
 ```
-
+if (i < 10) {
+    printf("i is less than 10\n");
+}
 ```
 
 **if/else statement**
 ```
-
+if (i < 10) {
+    printf("i is less than 10\n");
+} else {
+    printf("i is 10 or greater\n");
+}
 ```
 
 **if/else if/else statement**
 ```
-
+if (i < 10) {
+    printf("i is less than 10\n");
+} else if (i == 10) {
+    printf("i is equal to 10\n");
+} else {
+    printf("i is greater than 10\n");
+}
 ```
 
 **switch statement**
 ```
-
+switch (i) {
+    case 1:
+        printf("i is 1\n");
+        break;
+    case 2:
+        printf("i is 2\n");
+        break;
+    case 3:
+        printf("i is 3\n");
+        break;
+    default:
+        printf("i is something else\n");
+        break;
+}
 ```
 
 **effective use of goto labels to construct a single exit point within a function**
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+int print_first_line(const char *filename)
+{
+    int result = -1;
+    FILE *file = NULL;
+    char *buffer = NULL;
+
+    file = fopen(filename, "r");
+    if (file == NULL) {
+        goto cleanup;
+    }
+
+    buffer = malloc(256);
+    if (buffer == NULL) {
+        goto cleanup;
+    }
+
+    if (fgets(buffer, 256, file) == NULL) {
+        goto cleanup;
+    }
+
+    if (printf("%s", buffer) < 0) {
+        goto cleanup;
+    }
+
+    result = 0;  /* Success */
+
+cleanup:
+    free(buffer);  /* Safe even when buffer is NULL */
+
+    if (file != NULL && fclose(file) != 0) {
+        result = -1;
+    }
+
+    return result;  /* Single exit point */
+}
 ```
 
 ### 6.13 Demonstrate skill in creating and implementing a sort routine:
 ```
+#include <stddef.h>
+#include <stdio.h>
 
+# takes O(n^2)
+void insertion_sort(int array[], size_t length)
+{
+    for (size_t i = 1; i < length; i++) {
+        int value = array[i];
+        size_t j = i;
+
+        while (j > 0 && array[j - 1] > value) {
+            array[j] = array[j - 1];
+            j--;
+        }
+
+        array[j] = value;
+    }
+}
+
+int main(void)
+{
+    int numbers[] = {5, 2, 9, 1, 3};
+    size_t length = sizeof(numbers) / sizeof(numbers[0]);
+
+    insertion_sort(numbers, length);
+
+    for (size_t i = 0; i < length; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
 ```
 
-### 6.14 Given a specification for a stateful application or protocol, describe a diagrame of the possible states it can have
+### 6.14 Given a specification for a stateful application or protocol, describe a diagram of the possible states it can have
+
+
 
 ### 6.15 Describe terms associated with compiling, linking, debugging, and executables:
- - **Portable Executable (PE)**:
- - **Executable and Linkable Format**:
- - **Difference between PE and ELF**:
- - **Difference between a library and regualr executable program**:
- - **Calling convention/Application Binary Interface (ABI)**:
+
+**Portable Executable (PE)**
+A binary file format used primarily by Windows for executables (.exe), dynamic-link libraries (.dll), and other loadable files. It describes machine code, data, imported and exported symbols, and information the operating system needs to load the file into memory.
+
+**Executable and Linkable Format**
+A binary file format used primarily by Linux and many Unix-like systems. It supports executables, object files (.o), shared libraries (.so), and core dumps used for debugging.
+
+**Difference between PE and ELF**
+Both organize compiled code, data, and loading information, but use different headers, layouts, relocation mechanisms, and dynamic-linking structures. PE is associated with the Windows loader; ELF is associated with Linux and Unix-like loaders. Neither format alone makes a program portable between operating systems or processor architectures.
+
+**Difference between a library and regualr executable program**
+An executable is intended to launch as a program, with an entry point that begins its startup sequence. A shared library—typically a Windows DLL or Linux .so—provides code and data that other programs load and use. Libraries can contain initialization routines, but normally are not launched as standalone programs. A static library, by comparison, contains object code that the linker incorporates into an executable or another library.
+
+**Calling convention/Application Binary Interface (ABI)**
+Rules governing function calls at the machine-code level: where arguments go, how return values are delivered, which registers must be preserved, and who adjusts the stack. Separately compiled callers and functions must agree on these rules.
+
+The broader contract that allows compiled components to work together. It includes calling conventions, data sizes and alignment, structure layout, symbol naming, and other platform-specific binary rules. An API describes how source code uses an interface; an ABI describes how compiled code uses it.
 
  ### 6.16 Demonstrate skill in compiling, linking, and debugging
 **Execute a program in a debugger**
-```
-
-```
 
 **Create a program using the compilation and linking process**
 ```
-
+gcc -Wall -Wextra -g -O0 -c main.c -o main.o
+gcc -Wall -Wextra -g -O0 -c add.c -o add.o
+```
+- `-c` compiles without linking
+- `-g` includes debugging information
+- `-O0` disables optimization to make source-level debugging easier
+- `-Wall -Wextra` enables useful warnings
+Link the object files and run the executable:
+```
+gcc main.o add.o -o demo
+./demo
 ```
 
 **Compile position-independent code using a cross-compiler**
 ```
+# Compile ARM64 position-independent object code.
+aarch64-linux-gnu-gcc -Wall -Wextra -fPIC -c add.c -o add-arm64.o
 
+# Link it into an ARM64 shared library.
+aarch64-linux-gnu-gcc -shared add-arm64.o -o libadd.so
+
+# Inspect the resulting file and target architecture.
+file libadd.so
+aarch64-linux-gnu-readelf -h libadd.so
 ```
 
 ### 6.17 Demonstrate the ability to build a binary from multiple C source files and headers by writing a Makefile using explicit rules
+```
+CC = gcc
+CFLAGS = -std=c11 -Wall -Wextra -g
+CPPFLAGS =
+LDFLAGS =
+LDLIBS =
+
+.PHONY: all clean
+
+all: demo
+
+demo: main.o math_utils.o
+	$(CC) $(LDFLAGS) main.o math_utils.o $(LDLIBS) -o demo
+
+main.o: main.c math_utils.h
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c main.c -o main.o
+
+math_utils.o: math_utils.c math_utils.h
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c math_utils.c -o math_utils.o
+
+clean:
+	$(RM) demo main.o math_utils.o
+```
 
 ### 6.18 Describe how and when bitwise operators are used:
 **and (&)**
+Set a bit only if both inputs are `1`
 ```
-
+x & y
 ```
 
 **or (|)**
+Set a bit if either input is 1
 ```
-
+x | y
 ```
 
 **xor (^)**
+Set a bit only if inputs are different
 ```
-
+x ^ y
 ```
 
 **bitwise complement (~)**
+Flip every bit
 ```
-
+~x
 ```
 
 **shift left (<<)**
+Move bits left filling lower positions with zeroes
 ```
-
+a << 1
 ```
 
 **shift right (>>)**
+Move bits to the right, filling upper positions with zeroes
 ```
-
+a >> 1
 ```
 
 **Add, removing, and testing for single-bit flags**
+Each flag occupies a different bit, allowing several independent settings to share one integer.
 ```
+#include <stdio.h>
 
+#define FLAG_READ    (1u << 0)  /* 001 */
+#define FLAG_WRITE   (1u << 1)  /* 010 */
+#define FLAG_EXECUTE (1u << 2)  /* 100 */
+
+int main(void)
+{
+    unsigned int flags = 0;
+
+    /* Add (set) flags. */
+    flags |= FLAG_READ;
+    flags |= FLAG_WRITE;       /* flags is now 011 */
+
+    /* Remove (clear) a flag. */
+    flags &= ~FLAG_WRITE;      /* flags is now 001 */
+
+    /* Test whether a flag is set. */
+    if ((flags & FLAG_READ) != 0) {
+        printf("Read permission is enabled\n");
+    }
+
+    /* Toggle a flag: off becomes on, on becomes off. */
+    flags ^= FLAG_EXECUTE;     /* flags is now 101 */
+
+    return 0;
+}
 ```
 
 **Extracting arbitrary bytes from multi-byte data types**
+Shift the desired byte into the lowest eight bits, then mask with `0xFF`:
 ```
+#include <stdint.h>
 
+uint32_t value = UINT32_C(0x12345678);
+
+uint8_t byte0 = (uint8_t)( value        & 0xFFu); /* 0x78 */
+uint8_t byte1 = (uint8_t)((value >> 8)  & 0xFFu); /* 0x56 */
+uint8_t byte2 = (uint8_t)((value >> 16) & 0xFFu); /* 0x34 */
+uint8_t byte3 = (uint8_t)((value >> 24) & 0xFFu); /* 0x12 */
+```
+For an arbitrary byte index:
+```
+/* Preconditions: index is 0 through 3; 0 is least significant. */
+uint8_t extract_byte(uint32_t value, unsigned int index)
+{
+    return (uint8_t)((value >> (index * 8u)) & 0xFFu);
+}
 ```
 
 ### 6.19 Demonstrate skill using the C preprocessor
+Compile and run normally:
 ```
-
+gcc -std=c11 -Wall -Wextra main.c -o demo
+```
+Enable debugging through a command-line macro definition::
+```
+gcc -std=c11 -Wall -Wextra -DDEBUG=1 main.c -o demo
+```
+To inspect the preprocessed source without compiling:
+```
+gcc -E main.c -o main.i
 ```
 
 ### 6.20 Demonstrate skill in accessing environment variables
+Accessing environment variables via code:
 ```
+#include <stdio.h>
+#include <stdlib.h>
 
+int main(void)
+{
+    const char *username = getenv("USER");
+    const char *app_mode = getenv("APP_MODE");
+
+    /* getenv returns NULL if the variable is not defined. */
+    if (username != NULL) {
+        printf("User: %s\n", username);
+    } else {
+        printf("USER is not set\n");
+    }
+
+    /* Use a default if the variable is missing or empty. */
+    if (app_mode == NULL || app_mode[0] == '\0') {
+        app_mode = "development";
+    }
+
+    printf("Application mode: %s\n", app_mode);
+
+    return 0;
+}
+```
+Compile and run on Linux or MacOS:
+```
+gcc -std=c11 -Wall -Wextra main.c -o demo
+
+# Set a variable for this invocation only.
+APP_MODE=production ./demo
+
+# Export a variable to subsequent child processes.
+export APP_MODE=testing
+./demo
+
+# Remove the variable.
+unset APP_MODE
+./demo
 ```
 
 ### 6.21 Demonstrate skill in controlling memory:
-**With attention given to implementation defined behavior, compare and contast standard memory allocation functions**
-```
+**With attention given to implementation defined behavior, compare and contrast standard memory allocation functions**
+| Function | Purpose | Important behavior |
+|---|---|---|
+| `malloc(bytes)` | Allocates an uninitialized block. | Returns `NULL` on failure. Initialize the contents before reading them. |
+| `calloc(count, size)` | Allocates space for an array and sets every bit to zero. | Returns `NULL` on failure. All-bits-zero is not guaranteed to represent a null pointer or floating-point zero on every C implementation. |
+| `realloc(ptr, bytes)` | Resizes an existing allocation, possibly moving it. | Preserves contents up to the smaller of the old and new sizes. Added storage is uninitialized. For a nonzero size, failure returns `NULL` and leaves the original allocation intact. |
+| `free(ptr)` | Releases an allocation. | `free(NULL)` is safe. Freeing an invalid pointer or freeing the same allocation twice causes undefined behavior. |
 
-```
+**Demonstrate appropriate error checking when managing memory allocations**
+
 
 **Describe programming techniques that reduce the occurent of memory leaks**
+
+**Demonstrate effective use of Valgrind with --leak-check=full to identify memory leaks**
+
+**Given code samples, identify and remove memory leaks**
 
 ## 7.0 Python Programming
 
